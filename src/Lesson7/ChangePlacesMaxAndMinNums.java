@@ -14,21 +14,32 @@ public class ChangePlacesMaxAndMinNums {
         for (int i = 0; i < nums.length; i++) {
 //            nums[i] += max;
             if (max < nums[i]) {
-                max = nums[i];
-                nums[i] = min;
+//                max = nums[i];
+//                nums[i] = min;
+                max = i;
             }
             if (min > nums[i]) {
-                min = nums[i];
-                nums[i] = max;
+//                min = nums[i];
+//                nums[i] = max;
+                min = i;
             }
 
 
         }
+
+        System.out.println("\nmax: " + max);
+        System.out.println("min: " + min);
+
+        int temp = nums [max];
+        nums [max] = nums [min];
+        nums [min] = temp;
+
+        for (int num: nums) {
+            System.out.print(num + ",");
+        }
 //        for (int i = 0; i < nums.length; i++) {
 //            System.out.print("\n" + nums[i] + ",");
 //        }
-        System.out.println("\nmax: " + max);
-        System.out.println("min: " + min);
 
 //        for (int i = 0; i < nums.length; i++) {
 //

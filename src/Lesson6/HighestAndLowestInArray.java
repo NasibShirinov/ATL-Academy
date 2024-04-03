@@ -29,6 +29,7 @@ public class HighestAndLowestInArray {
                 currentArray = numbers[i];
             }
         }
+
         System.out.println("lowest is " + currentArray);
     }
 }
