@@ -11,6 +11,7 @@ public class Array {
         int [][] array = new int[num][num];
 
 
+        System.out.println("--------------------");
         int counter = 0;
         for (int row = 0; row < num; row++) {
             for (int column = 0; column < num; column++) {
