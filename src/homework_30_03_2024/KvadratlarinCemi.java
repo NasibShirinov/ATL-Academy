@@ -1,4 +1,4 @@
-package Lesson6;
+package homework_30_03_2024;
 
 import java.util.Scanner;
 
@@ -8,10 +8,11 @@ public class KvadratlarinCemi {
         int number = sc.nextInt();
         double limit = Math.pow(10, 6);
 
-        int sum = 0;
+        long sum = 0;
+
         if (number >= 1 && number <= limit) {
             for (int i = 1; i <= number; i++) {
-                sum += (i * i);
+                sum += (long) i * i;
             }
             System.out.println(sum);
         }
