@@ -30,6 +30,11 @@ public class Director extends Manager{
     }
 
     @Override
+    public void work () {
+        System.out.println("Director " + this.name + " is doing relevant job");
+    }
+
+    @Override
     void calculateSalary (int year) {
         System.out.println("Salary of director " + this.name + " is: " + DIRECTOR_PAYMENT * year);
     }
