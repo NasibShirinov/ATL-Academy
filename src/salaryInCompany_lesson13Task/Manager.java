@@ -43,6 +43,6 @@ public class Manager extends Employee{
 
     @Override
     void calculateSalary (int year) {
-        System.out.println("Salary of manager " + this.name + " is: " + MANAGEMENT_PAYMENT * year);
+        System.out.println("Salary of manager " + this.name + " is: " + (MANAGEMENT_PAYMENT * year - Employee.BASE_SALARY));
     }
 }
