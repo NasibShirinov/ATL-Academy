@@ -1,13 +1,15 @@
-package A_Happy_Family;
+package lesson15.A_Happy_Family;
 
 public class Human {
-    String name;
-    String surname;
-    int yearOfBirth;
-    int IQlevel;
-    Pet pet;
-    Human mother;
-    Human father;
+    private String name;
+    private String surname;
+    private int yearOfBirth;
+    private int IQlevel;
+    private Pet pet;
+    private Human mother;
+    private Human father;
+
+    private Family family;
 //    int [][] =
 
 
@@ -72,9 +74,9 @@ public class Human {
     }
 
     String describePet() {
-        String sly = pet.tricklevel > 50 ? "sly": "very sly";
+        String sly = pet.getTricklevel() > 50 ? "sly": "very sly";
         return "display the information about your pet: " +
-                "\"I have a "+ pet.species + ", he is " + pet.age + " years old, " +
+                "\"I have a "+ pet.getSpecies() + ", he is " + pet.getAge() + " years old, " +
                 "he is " + sly;
     }
 
@@ -84,15 +86,16 @@ public class Human {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public Human(String name, String surname, int yearOfBirth, Human mother, Human father) {
+    public Human(String name, String surname, int yearOfBirth, Human mother, Human father, Family family) {
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
         this.mother = mother;
         this.father = father;
+        this.family = family;
     }
 
-    public Human(String name, String surname, int yearOfBirth, int IQlevel, Pet pet, Human mother, Human father) {
+    public Human(String name, String surname, int yearOfBirth, int IQlevel, Pet pet, Human mother, Human father, Family family) {
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
@@ -100,6 +103,7 @@ public class Human {
         this.pet = pet;
         this.mother = mother;
         this.father = father;
+        this.family = family;
     }
 
     public Human() {

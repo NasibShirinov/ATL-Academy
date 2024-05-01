@@ -27,7 +27,7 @@ public class Manager extends Employee{
 
 
     public void manage () {
-        System.out.println("Manager " + getName() + " is leading this department " + departmentManaged);
+        System.out.println("Manager " + this.name + " is leading this department " + departmentManaged);
     }
 
 
@@ -36,7 +36,7 @@ public class Manager extends Employee{
     }
 
 
-    @Override
+
     public void work () {
         System.out.println("Manager " + this.name + " is doing relevant job");
     }

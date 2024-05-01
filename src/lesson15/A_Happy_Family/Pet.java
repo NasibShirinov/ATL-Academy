@@ -1,10 +1,10 @@
-package A_Happy_Family;
+package lesson15.A_Happy_Family;
 
 public class Pet {
-    String species;
-    String nickname;
-    int age;
-    int tricklevel;
+    private String species;
+    private String nickname;
+    private int age;
+    private int tricklevel;
 
     public String getSpecies() {
         return species;

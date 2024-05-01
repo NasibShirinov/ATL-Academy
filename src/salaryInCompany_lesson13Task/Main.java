@@ -9,12 +9,14 @@ public class Main {
         employee.printInfo();
         employee.work();
         employee.calculateSalary(employee.year);
+        System.out.println("----------");
 
         manager.printInfo();
         employee.work();
         manager.manage();
         manager.doStrategicPlan("employ 2 new employees");
         manager.calculateSalary(manager.year);
+        System.out.println("----------");
 
         director.printInfo();
         director.work();
