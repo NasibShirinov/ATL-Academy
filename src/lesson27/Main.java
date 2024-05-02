@@ -11,6 +11,6 @@ public class Main {
         book1.borrowBook(book1.getTitle());
 //        book1.borrowBook(book1.getTitle());
 
-        book1.returnBook(book1);
+        book1.returnBook(book1.getTitle());
     }
 }

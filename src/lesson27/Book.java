@@ -1,6 +1,8 @@
 package lesson27;
 
 public class Book implements IBook {
+    // bu klassda override lari duzeltmek lazimdi
+    // return ve borrowdaki parametler lazimsizdirsa duzeltmek lazimdi
     private String title;
     private String author;
     private Status bookStatus;
@@ -36,11 +38,6 @@ public class Book implements IBook {
     }
 
     @Override
-    public void borrowBook(Status status) {
-
-    }
-
-    @Override
     public void borrowBook(String title) {
         if (getBookStatus().equals(Status.AVAILABLE)) {
             System.out.println("You have borrowed a book successfully");
@@ -55,19 +52,8 @@ public class Book implements IBook {
     }
 
     @Override
-    public void returnBook(Status status) {
-
-    }
-
-    @Override
-    public void returnBook(Book book) {
-
-    }
-
-
-    @Override
-    public void returnBook(Book book, Status bookStatus) {
+    public void returnBook(String title) {
         setBookStatus(Status.AVAILABLE);
-        System.out.println(book.title + " now is available");
+        System.out.println(title + " now is available");
     }
 }

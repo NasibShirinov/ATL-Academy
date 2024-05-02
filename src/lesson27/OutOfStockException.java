@@ -1,5 +1,5 @@
 package lesson27;
 
-public class OutOfStockException extends Exception{
+public class OutOfStockException extends RuntimeException{
 
 }

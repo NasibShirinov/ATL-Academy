@@ -1,14 +1,12 @@
 package lesson27;
 
 public interface IBook {
+    // bunlari duzeltmek lazimdi
 
-    void borrowBook(Status status);
 
     void borrowBook(String title);
 
-    void returnBook(Status status);
 
-    void returnBook(Book book);
+    void returnBook(String title);
 
-    void returnBook(Book book, Status bookStatus);
 }
