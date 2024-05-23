@@ -113,7 +113,7 @@ SELECT *
 FROM Orders
 WHERE CustomerID = 2;
 
-SELECT *
+SELECT sum(Quantity)
 FROM Sales
 WHERE Quantity > 10;
 
