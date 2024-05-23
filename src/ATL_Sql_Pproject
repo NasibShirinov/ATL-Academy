@@ -105,7 +105,7 @@ FROM Sales;
 SELECT Quantity
 FROM Inventory;
 
-SELECT FirstName, LastName AS FullName
+SELECT concat(FirstName, ' ' LastName) AS FullName
 FROM Employees
 WHERE Position = 'Manager';
 
