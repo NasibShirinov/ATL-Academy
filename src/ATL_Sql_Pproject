@@ -1,0 +1,130 @@
+CREATE TABLE Employees
+(
+    EmployeeID SERIAL PRIMARY KEY,
+    FirstName  VARCHAR(50),
+    LastName   VARCHAR(50),
+    Position   VARCHAR(50),
+    Salary     DECIMAL(10, 2)
+);
+
+CREATE TABLE Customers
+(
+    CustomerID SERIAL PRIMARY KEY,
+    Name       VARCHAR(50),
+    Email      VARCHAR(50),
+    Phone      VARCHAR(20)
+);
+
+CREATE TABLE Orders
+(
+    OrderID     SERIAL PRIMARY KEY,
+    OrderNumber VARCHAR(20),
+    OrderDate   DATE,
+    OrderPrice  DECIMAL(10, 2),
+    Status      VARCHAR(20),
+    CustomerID  INT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
+);
+
+CREATE TABLE Products
+(
+    ProductID SERIAL PRIMARY KEY,
+    Name      VARCHAR(50),
+    Price     DECIMAL(10, 2),
+    Category  VARCHAR(50)
+);
+
+CREATE TABLE Sales
+(
+    SaleID    SERIAL PRIMARY KEY,
+    ProductID INT,
+    Quantity  INT,
+    Price     DECIMAL(10, 2),
+    Revenue   DECIMAL(10, 2),
+    FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
+
+CREATE TABLE Inventory
+(
+    ProductID SERIAL PRIMARY KEY,
+    Quantity  INT,
+    FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
+
+insert into Employees (EmployeeID, firstName, lastName, position, salary)
+values (1, 'Namiq', 'Hemidov', 'Chief', 5000),
+       (2, 'Elvin', 'Kamilov', 'Manager', 3500),
+       (3, 'Fuad', 'Aliyev', 'Seller', 1000);
+
+insert into Customers (CustomerID, name, email, Phone)
+values (1, 'Aqil', 'aqilh@gmail.com', '25684'),
+       (2, 'Rauf', 'rauf@gmail.com', '56416546'),
+       (3, 'Malik', 'malik@gmail.com', '684684'),
+       (4, 'Asif', 'asif@gmail.com', '651651'),
+       (5, 'Mahmud', 'mahmud@gmail.com', '854148');
+
+INSERT INTO Orders (OrderNumber, OrderDate, OrderPrice, Status, CustomerID)
+VALUES ('ORD001', '2023-06-01', 100.00, 'Completed', 1),
+       ('ORD002', '2023-06-05', 50.00, 'Completed', 2),
+       ('ORD003', '2023-06-10', 75.00, 'Pending', 3);
+
+insert into Products (ProductID, name, price, Category)
+values (1, 'Samsung S24', 125.5, 'Telephone'),
+       (2, 'Mouse', 175, 'Electronics'),
+       (3, 'Keyboard', 500, 'Electronics'),
+       (4, 'RAM', 185, 'Computer components'),
+       (5, 'SSD', 220, 'Computer components');
+
+INSERT INTO Sales (ProductID, Quantity, Price, Revenue)
+VALUES (1, 10, 10.99, 109.90),
+       (2, 5, 25.99, 129.95),
+       (3, 20, 5.99, 119.80);
+
+INSERT INTO Inventory (ProductID, Quantity)
+VALUES (1, 100),
+       (2, 50),
+       (3, 200);
+
+SELECT *
+FROM Employees;
+
+SELECT Name, Email
+FROM Customers;
+
+SELECT *
+FROM Orders
+WHERE status = 'Completed';
+
+SELECT Name, Price
+FROM Products
+WHERE Category = 'Electronics';
+
+SELECT Revenue
+FROM Sales;
+
+SELECT Quantity
+FROM Inventory;
+
+SELECT FirstName, LastName AS FullName
+FROM Employees
+WHERE Position = 'Manager';
+
+SELECT *
+FROM Orders
+WHERE CustomerID = 2;
+
+SELECT *
+FROM Sales
+WHERE Quantity > 10;
+
+SELECT greatest(Price) AS MostExpensiveProduct
+FROM Products;
+
+
+/*
+destroying objects
+static factory
+destracting objects
+*/
+
+

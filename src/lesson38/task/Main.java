@@ -23,7 +23,7 @@ public class Main {
         System.out.println(Arrays.toString(students));
 
         System.out.println("---------- Sort Age -------");
-        Arrays.sort(students, (student1, student2) -> Integer.compare(student1.getAge(), student2.getAge()));
+        Arrays.sort(students, (student1, student2) -> -Integer.compare(student1.getAge(), student2.getAge()));
         System.out.println(Arrays.toString(students));
     }
 }
