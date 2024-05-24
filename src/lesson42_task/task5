@@ -1,0 +1,44 @@
+create table MaleStudents
+(
+    ID serial primary key,
+    Name varchar(30),
+    Surname varchar(30)
+);
+
+create table FemaleStudents
+(
+    ID serial primary key,
+    Name varchar(30),
+    Surname varchar(30)
+);
+
+insert into MaleStudents (ID, Name, Surname)
+values (1, 'Namiq', 'Memmedov');
+
+insert into MaleStudents (ID, Name, Surname)
+values (1, 'Rafiq', 'Isayev');
+
+insert into MaleStudents (ID, Name, Surname)
+values (1, 'Tofiq', 'Aliyev');
+
+insert into FemaleStudents (ID, Name, Surname)
+values (1, 'Lale', 'Memmedova');
+
+insert into FemaleStudents (ID, Name, Surname)
+values (1, 'Aynur', 'Isayeva');
+
+insert into FemaleStudents (ID, Name, Surname)
+values (1, 'Kemale', 'Aliyeva');
+
+SELECT Name, Surname FROM MaleStudents
+UNION
+SELECT Name, Surname FROM FemaleStudents;
+
+SELECT Name, Surname FROM MaleStudents
+INTERSECT
+SELECT Name, Surname FROM FemaleStudents;
+
+SELECT Name, Surname FROM MaleStudents
+EXCEPT
+SELECT Name, Surname FROM FemaleStudents;
+

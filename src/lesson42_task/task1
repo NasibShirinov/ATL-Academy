@@ -1,0 +1,25 @@
+create table Sales
+(
+    ID serial primary key,
+    Product varchar(50),
+    Quantity integer,
+    Price decimal
+);
+
+insert into Sales (ID, Product, Quantity, Price)
+values (1, 'Electronics', 7, 70.5);
+
+insert into Sales (ID, Product, Quantity, Price)
+values (4, 'Electronics', 3, 70.5);
+
+insert into Sales (ID, Product, Quantity, Price)
+values (2, 'Telephone', 3, 370.5);
+
+insert into Sales (ID, Product, Quantity, Price)
+values (3, 'Headset', 5, 170);
+
+SELECT Product, sum(Quantity), avg(Price)
+FROM Sales
+GROUP BY Product;
+
+

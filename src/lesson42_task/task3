@@ -1,0 +1,21 @@
+create table Products
+(
+    ID serial primary key,
+    Name varchar(50),
+    Price decimal
+);
+
+insert into Products (ID, Name, Price)
+values (1, 'Electronics', 70.5);
+
+insert into Products (ID, Name, Price)
+values (2, 'Telephone', 300);
+
+insert into Products (ID, Name, Price)
+values (3, 'Headset', 58);
+
+SELECT MIN(Price)
+FROM Products;
+
+SELECT MAX(Price)
+FROM Products;

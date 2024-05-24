@@ -1,0 +1,51 @@
+create table Students
+(
+    ID serial primary key,
+    Name varchar(30),
+    Surname varchar(30)
+);
+
+create table Grades
+(
+    ID serial primary key,
+    Grade decimal
+);
+
+insert into Students (ID, Name, Surname)
+values (1, 'Namiq', 'Memmedov');
+
+insert into Students (ID, Name, Surname)
+values (2, 'Rafiq', 'Aliyev');
+
+insert into Students (ID, Name, Surname)
+values (3, 'Tofiq', 'Quliyev');
+
+insert into Grades (Grade)
+values (50);
+
+insert into Grades (Grade)
+values (85);
+
+insert into Grades (Grade)
+values (95);
+
+ALTER table Grades
+ADD COLUMN ID serial primary key;
+
+SELECT *
+FROM Grades;
+
+SELECT *
+FROM Students
+WHERE ID IN (
+    SELECT ID
+    FROM Grades
+    GROUP BY ID
+    HAVING AVG(grade) > (
+        SELECT AVG(grade) FROM Grades
+    )
+);
+
+
+
+

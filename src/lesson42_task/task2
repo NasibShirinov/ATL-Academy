@@ -1,0 +1,23 @@
+create table Expenses
+(
+    ID serial primary key,
+    Category varchar(50),
+    Amount decimal
+);
+
+insert into Expenses (ID, Category, Amount)
+values (1, 'Electronics', 7);
+
+insert into Expenses (ID, Category, Amount)
+values (2, 'Telephone', 3);
+
+insert into Expenses (ID, Category, Amount)
+values (3, 'Headset', 5);
+
+SELECT sum(Amount)
+FROM Expenses;
+
+SELECT avg(Amount)
+FROM Expenses;
+
+
