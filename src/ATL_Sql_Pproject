@@ -1,130 +1,133 @@
-CREATE TABLE Employees
+CREATE TABLE Products
 (
-    EmployeeID SERIAL PRIMARY KEY,
-    FirstName  VARCHAR(50),
-    LastName   VARCHAR(50),
-    Position   VARCHAR(50),
-    Salary     DECIMAL(10, 2)
+    ProductID SERIAL PRIMARY KEY,
+    Name varchar(100),
+    Price DECIMAL,
+    Quantity INTEGER,
+    Description VARCHAR(1000),
+    CategoryID integer,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
+
+
+CREATE TABLE Categories
+(
+    CategoryID SERIAL PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
 
 CREATE TABLE Customers
 (
     CustomerID SERIAL PRIMARY KEY,
-    Name       VARCHAR(50),
-    Email      VARCHAR(50),
-    Phone      VARCHAR(20)
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Address VARCHAR(200),
+    Email VARCHAR(70),
+    PhoneNumber NUMERIC
 );
 
 CREATE TABLE Orders
 (
-    OrderID     SERIAL PRIMARY KEY,
-    OrderNumber VARCHAR(20),
-    OrderDate   DATE,
-    OrderPrice  DECIMAL(10, 2),
-    Status      VARCHAR(20),
-    CustomerID  INT,
-    FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
+    OrderID SERIAL PRIMARY KEY,
+    CustomerID SERIAL,
+    OrderDate DATE,
+    FOREIGN KEY (OrderID) REFERENCES Customers(CustomerID)
 );
 
-CREATE TABLE Products
+CREATE TABLE OrderDetails
 (
-    ProductID SERIAL PRIMARY KEY,
-    Name      VARCHAR(50),
-    Price     DECIMAL(10, 2),
-    Category  VARCHAR(50)
+    OrderDetailID SERIAL PRIMARY KEY,
+    OrderID SERIAL,
+    ProductID SERIAL,
+    Quantity INTEGER,
+    FOREIGN KEY (OrderDetailID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (OrderDetailID) REFERENCES Products(ProductID)
 );
 
-CREATE TABLE Sales
-(
-    SaleID    SERIAL PRIMARY KEY,
-    ProductID INT,
-    Quantity  INT,
-    Price     DECIMAL(10, 2),
-    Revenue   DECIMAL(10, 2),
-    FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
-);
+DROP TABLE Products cascade;
+DROP TABLE Categories;
+DROP TABLE Customers;
+DROP TABLE Orders;
+DROP TABLE OrderDetails;
 
-CREATE TABLE Inventory
-(
-    ProductID SERIAL PRIMARY KEY,
-    Quantity  INT,
-    FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
-);
+INSERT INTO Products (Name, Price, Quantity, Description)
+VALUES ('Product A', 10.99, 10, 'Modern'),
+       ('Product B', 25.99, 20, 'New'),
+       ('Product C', 5.99, 25, 'Ancient');
 
-insert into Employees (EmployeeID, firstName, lastName, position, salary)
-values (1, 'Namiq', 'Hemidov', 'Chief', 5000),
-       (2, 'Elvin', 'Kamilov', 'Manager', 3500),
-       (3, 'Fuad', 'Aliyev', 'Seller', 1000);
+insert into Categories (Name)
+values ('Electronics'),
+       ('Home & Garden'),
+       ('Books');
 
-insert into Customers (CustomerID, name, email, Phone)
-values (1, 'Aqil', 'aqilh@gmail.com', '25684'),
-       (2, 'Rauf', 'rauf@gmail.com', '56416546'),
-       (3, 'Malik', 'malik@gmail.com', '684684'),
-       (4, 'Asif', 'asif@gmail.com', '651651'),
-       (5, 'Mahmud', 'mahmud@gmail.com', '854148');
+INSERT INTO Customers (FirstName, LastName, Address, Email, PhoneNumber)
+VALUES ('Bob', 'Carlos', 'Germany', 'info@acme.com', 123 - 456 - 7890),
+       ('John', 'Wilson', 'England', 'info@xyz.com', 987 - 654 - 3210),
+       ('Mike', 'Corleone', 'Italy', 'info@abc.com', 555 - 555 - 5555);
 
-INSERT INTO Orders (OrderNumber, OrderDate, OrderPrice, Status, CustomerID)
-VALUES ('ORD001', '2023-06-01', 100.00, 'Completed', 1),
-       ('ORD002', '2023-06-05', 50.00, 'Completed', 2),
-       ('ORD003', '2023-06-10', 75.00, 'Pending', 3);
+insert into Orders (CustomerID, OrderDate)
+values (1, '2023-06-01'),
+       (2, '2023-06-05'),
+       (3, '2023-06-10');
 
-insert into Products (ProductID, name, price, Category)
-values (1, 'Samsung S24', 125.5, 'Telephone'),
-       (2, 'Mouse', 175, 'Electronics'),
-       (3, 'Keyboard', 500, 'Electronics'),
-       (4, 'RAM', 185, 'Computer components'),
-       (5, 'SSD', 220, 'Computer components');
-
-INSERT INTO Sales (ProductID, Quantity, Price, Revenue)
-VALUES (1, 10, 10.99, 109.90),
-       (2, 5, 25.99, 129.95),
-       (3, 20, 5.99, 119.80);
-
-INSERT INTO Inventory (ProductID, Quantity)
-VALUES (1, 100),
-       (2, 50),
-       (3, 200);
+insert into OrderDetails (OrderID, ProductID, Quantity)
+values (1, 3, 8),
+       (2, 1, 5),
+       (3, 1, 10);
 
 SELECT *
-FROM Employees;
+FROM Products;
 
-SELECT Name, Email
+SELECT *
+FROM Categories;
+
+SELECT *
 FROM Customers;
 
 SELECT *
-FROM Orders
-WHERE status = 'Completed';
+FROM Orders;
 
-SELECT Name, Price
+SELECT *
+FROM OrderDetails;
+
+SELECT *
 FROM Products
-WHERE Category = 'Electronics';
+WHERE ProductID = 1;
 
-SELECT Revenue
-FROM Sales;
+SELECT *
+FROM Categories
+WHERE name = 'Electronics';
 
-SELECT Quantity
-FROM Inventory;
-
-SELECT concat(FirstName, ' ' LastName) AS FullName
-FROM Employees
-WHERE Position = 'Manager';
+SELECT *
+FROM Customers
+WHERE CustomerID = 2;
 
 SELECT *
 FROM Orders
 WHERE CustomerID = 2;
 
-SELECT sum(Quantity)
-FROM Sales
-WHERE Quantity > 10;
+SELECT *
+FROM OrderDetails
+WHERE OrderID = 1;
 
-SELECT greatest(Price) AS MostExpensiveProduct
+ALTER TABLE OrderDetails
+ADD Price INTEGER;
+
+UPDATE OrderDetails
+SET Price = 38
+WHERE ProductID = 1;
+
+INSERT INTO Products (Name, Price, Quantity, Description)
+VALUES ('Product E', 21.5, 3, 'New');
+
+SELECT *
 FROM Products;
 
+DELETE FROM Products
+WHERE ProductID = 6;
 
-/*
-destroying objects
-static factory
-destracting objects
-*/
+SELECT *
+FROM Products;
 
 
